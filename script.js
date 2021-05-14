@@ -5,7 +5,7 @@ var startButtonEl = document.getElementById("start-btn");
 var submitButtonEl = document.getElementById("submit-btn");
 var timerEl = document.getElementById("time");
 
-var clock = 5;
+var clock = 20;
 var currentQuestionIndex = 0;
 var playerScore = 0;
 var timeInt;
@@ -16,12 +16,20 @@ var quizList = [
         answer: "alerts"
     },
     {
-        question: "question #2",
-        choices: ["a", "b", "c", "d"],
-        answer: "c"
+        question: "What are variables used for in JavaScript Programs?",
+        choices: ["Storing numbers, dates, or other values", "Varying Randomly", "Initiating an action", "None of the Above"],
+        answer: "Storing numbers, dates, or other values",
     },
-
-    //add 3 more questions, change first 2
+    {
+        question: "What is the correct JavaScript syntax to write 'Hello World'?",
+        choices: ["System.out.println('Hello World')", "println ('Hello World')", "document.write('Hello World')", "response.write('Hello World')"],
+        answer: "document.write('Hello World')",
+    },
+    {
+        question: "Inside what HTML element do you add our JavaScript file?",
+        choices: ["<js>", "<scripting>", "<script>", "<javascript>"],
+        answer: "<script>",
+    },
 ]
 
 function startGame() {
@@ -40,7 +48,6 @@ function countDown() {
         clearInterval(timeInt);
         //new function endquiz - result  
         gameOver();
-
     }
 }
 
@@ -56,6 +63,33 @@ function displayQa() {
     answerEl.textContent = currentQuestion.choices[0];
     //setting value 
     answerEl.value = currentQuestion.choices[0];
+    //onclik event 
+    answerEl.onclick = validate;
+    console.log(answerEl);
+
+    var answerEl = document.getElementById("answer-2");
+    //display text 
+    answerEl.textContent = currentQuestion.choices[1];
+    //setting value 
+    answerEl.value = currentQuestion.choices[1];
+    //onclik event 
+    answerEl.onclick = validate;
+    console.log(answerEl);
+
+    var answerEl = document.getElementById("answer-3");
+    //display text 
+    answerEl.textContent = currentQuestion.choices[2];
+    //setting value 
+    answerEl.value = currentQuestion.choices[2];
+    //onclik event 
+    answerEl.onclick = validate;
+    console.log(answerEl);
+
+    var answerEl = document.getElementById("answer-4");
+    //display text 
+    answerEl.textContent = currentQuestion.choices[3];
+    //setting value 
+    answerEl.value = currentQuestion.choices[3];
     //onclik event 
     answerEl.onclick = validate;
     console.log(answerEl);
@@ -76,7 +110,19 @@ function validate() {
 }
 
 function gameOver() {
-    alert("Game over")
+    qaPageEl.setAttribute("class", "hide");
+    resultsEl.setAttribute("class", "show");
+
 }
 
 startButtonEl.onclick = startGame;
+
+//local storage
+
+var localStorage = () => {
+    localStorage.setItem("storagevalue", initials.textContent);
+}
+
+submitButtonEl.addEventListener('click', localStorage);
+
+console.log(localStorage);
